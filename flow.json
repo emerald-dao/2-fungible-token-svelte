@@ -36,6 +36,12 @@
 				"testnet": "0x631e88ae7f1d7c20",
 				"mainnet": "0x1d7e57aa55817448"
 			}
+		},
+		"ExampleToken": {
+			"source": "./src/lib/flow/cadence/contracts/ExampleToken.cdc",
+			"aliases": {
+				"emulator": "0xf8d6e0586b0a20c7"
+			}
 		}
 	},
 	"accounts": {
@@ -44,5 +50,11 @@
 			"key": "fc49a771829ff480841164af13b18a68cd697b6e79c80af7f8470a9e651dfac5"
 		}
 	},
-	"deployments": {}
+	"deployments": {
+		"emulator": {
+			"emulator-account": [
+				"ExampleToken"
+			]
+		}
+	}
 }
