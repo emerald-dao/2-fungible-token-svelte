@@ -5,7 +5,7 @@
 	import executeTransaction from '$flow/utils/executeTransaction';
 	import dappData from '$lib/config/dappData';
 	import { user } from '$stores/UserStore';
-	import { RefreshCcw } from 'lucide-svelte';	
+	import Icon from '@iconify/svelte';
 	
 	let balance:number = 0.00;
 	let address:string ="";
@@ -24,15 +24,14 @@
 	};
 </script>
 
-
-
 <section>
 	<span>Welcome to</span>
 	<h1>{dappData.title}</h1>
 	<p>{dappData.description}</p>
 	<p>Crafted by {dappData.author}</p>
 </section>
-<div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; ">
+
+<div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding-bottom:20px;">
 	<div style="padding-top:10px; padding-left:10px; text-align: center;">
 		{#if $user?.loggedIn}
 			<button class="button" on:click={() => executeTransaction(() => setupVault())}>Setup Vault</button>
@@ -50,36 +49,37 @@
 		{#if $user?.loggedIn}
 			<p style="color: #38E8C6;">Balance:</p>
 			<p style="color:#38E8C6;">{balance}</p>
-			<div on:click={handleGetBalance}>
-				<RefreshCcw color="#38E8C6" style="padding-right: 10px; height: 2.0rem; width: 2.0rem;" />
-			</div>
+			<a href="#" on:click={handleGetBalance}>
+				<Icon icon="tabler:reload" color="#38E8C6" style="padding-right: 10px; height: 2.0rem; width: 2.0rem;" />
+			</a>
 		{/if}
 	</div>
 </div>
 
-<div style="padding:60px;">
-	<div class="container">
-		<div class="header">
-		  <h1 style="font-size: x-large;">Transfer Tokens</h1>
-		  <img src="/planee.png" style="width: 3.0rem; height: 3.0rem" alt="plane" />
+{#if $user?.loggedIn}
+	<div style="padding:60px;">
+		<div class="container">
+			<div class="header">
+			<h1 style="font-size: x-large;">Transfer Tokens</h1>
+			<img src="/planee.png" style="width: 3.0rem; height: 3.0rem" alt="plane" />
+			</div>
+		
+			<div class="input-container">
+			<label for="" class="label">Address</label>
+			<input type="text" placeholder="Recipient address" class="input" bind:value={address}  />
+			</div>
+		
+			<div class="input-container">
+			<label for="" class="label">Amount</label>
+			<input type="text" placeholder="Amount" class="input" bind:value={amount} />
+			</div>
+		
+			<button on:click={() => executeTransaction(() => transferTokens(amount, address))} class="button">
+				Transfer Tokens
+			</button>
 		</div>
-	  
-		<div class="input-container">
-		  <label for="" class="label">Address</label>
-		  <input type="text" placeholder="Recipient address" class="input" bind:value={address}  />
-		</div>
-	  
-		<div class="input-container">
-		  <label for="" class="label">Amount</label>
-		  <input type="text" placeholder="Amount" class="input" bind:value={amount} />
-		</div>
-	  
-		<button on:click={() => executeTransaction(() => transferTokens(amount, address))} class="button">
-			Transfer Tokens
-		</button>
 	</div>
-</div>
-
+{/if}
 <style type="scss">
 	.container {
 		display: flex;
