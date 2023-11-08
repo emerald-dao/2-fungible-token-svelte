@@ -1,11 +1,11 @@
 import * as fcl from '@onflow/fcl';
 import { SHA3 } from 'sha3';
-import { ec } from 'elliptic';
+import { ec as EC } from 'elliptic';
 import { EXAMPLE_TOKEN_CONTRACT_ADDRESS } from '../config';
-var ecObj = new ec('p256');
 
 const sign = (message) => {
-	const key = ecObj.keyFromPrivate(Buffer.from(process.env.PRIVATE_KEY, 'hex'));
+	let ec = new EC('p256');
+	const key = ec.keyFromPrivate(Buffer.from(process.env.PRIVATE_KEY, 'hex'));
 	const sig = key.sign(hash(message)); // hashMsgHex -> hash
 	const n = 32;
 	const r = sig.r.toArrayLike(Buffer, 'be', n);
