@@ -1,8 +1,8 @@
 // This transaction is a template for a transaction
 // to add a Vault resource to their account
 // so that they can use the exampleToken
-import ExampleToken from "../contracts/ExampleToken.cdc"
-import FungibleToken from "../contracts/utility/FungibleToken.cdc"
+import "ExampleToken"
+import "FungibleToken"
 
 transaction() {
 

@@ -1,10 +1,9 @@
 import * as fcl from '@onflow/fcl';
 import setupVaultTx from '../cadence/transactions/setup_vault.cdc?raw';
-import replaceWithProperImports from '$flow/utils/replaceWithProperImports';
 
 async function setupVault() {
 	const transactionId = await fcl.mutate({
-		cadence: replaceWithProperImports(setupVaultTx),
+		cadence: setupVaultTx,
 		args: (arg, t) => [],
 		proposer: fcl.authz,
 		payer: fcl.authz,

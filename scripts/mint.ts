@@ -1,14 +1,14 @@
 require('dotenv').config();
 import { serverAuthorization } from './flow/utils/authorization';
 import { mutate } from '@onflow/fcl';
-import { EXAMPLE_TOKEN_CONTRACT_ADDRESS, FUNGIBLE_TOKEN_CONTRACT_ADDRESS } from './flow/config';
+import './flow/config';
 
 async function mintScript(recipient: string, amount: string) {
     try {
         const transactionId = await mutate({
             cadence: `
-            import FungibleToken from ${FUNGIBLE_TOKEN_CONTRACT_ADDRESS}
-            import ExampleToken from ${EXAMPLE_TOKEN_CONTRACT_ADDRESS}
+            import "FungibleToken"
+            import "ExampleToken"
 
             transaction(recipient: Address, amount: UFix64) {
 

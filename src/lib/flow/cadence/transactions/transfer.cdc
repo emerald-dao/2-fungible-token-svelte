@@ -1,5 +1,5 @@
-import ExampleToken from "../contracts/ExampleToken.cdc"
-import FungibleToken from "../contracts/utility/FungibleToken.cdc"
+import "ExampleToken"
+import "FungibleToken"
 
 transaction(recipient: Address, amount: UFix64) {
     let SenderVault: &ExampleToken.Vault
