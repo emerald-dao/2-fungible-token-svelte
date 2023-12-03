@@ -1,5 +1,5 @@
 import * as fcl from '@onflow/fcl';
-import getSupplyScript from '../cadence/scripts/get_bsupply.cdc?raw';
+import getSupplyScript from '../cadence/scripts/get_supply.cdc?raw';
 
 async function getSupply(userAddress: string) {
 	const result = await fcl.query({
